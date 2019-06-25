@@ -1,6 +1,14 @@
 
 import itertools
 
+def iter_generator(iter):
+  
+  def gen():
+    while 1:
+      yield iter.next()
+      
+  return gen()
+
 def dataset_generator(dataset, session):
 
   iter = dataset.make_one_shot_iterator()
@@ -11,5 +19,7 @@ def dataset_generator(dataset, session):
       yield session.run(batch)
 
   return gen()
+import itertools
+
 
 
