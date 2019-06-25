@@ -932,7 +932,7 @@ as_generator.tensorflow.python.data.ops.dataset_ops.Dataset <- function(x) {
 
 as_generator.function <- function(x) {
   python_path <- system.file("python", package = "keras")
-  tools <- reticulate::import_from_path("kerastools", path = python_path)
+  tools <- reticulate::import_from_path("kerastools/generator.py", path = python_path)
   iter <- reticulate::py_iterator(function() {
     elem <- keras_array(x())
     
@@ -943,7 +943,7 @@ as_generator.function <- function(x) {
     
     do.call(reticulate::tuple, elem)
   })
-  tools$generator$iter_generator(iter)
+  tools$iter_generator(iter)
 }
 
 as_generator.keras_preprocessing.sequence.TimeseriesGenerator <- function(x) {
